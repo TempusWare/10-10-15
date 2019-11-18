@@ -5,18 +5,34 @@
     <title>10... 10:15</title>
   </head>
   <body>
-    <p id="timestamp">Timestamp</p>
+    <p id="timestamp" style="text-align:center;font-size:100px">Timestamp</p>
     <script>
-      var timestamp = document.getElementById("timestamp");
+      var timestamp = document.getElementById("timestamp"),
+      song = new Audio("ivebeendelayed.mp3");
+
+      function playMusic() {
+        song.play();
+      };
+
+      function addZero(i) { // Taken from https://www.w3schools.com/jsref/jsref_getseconds.asp
+        if (i < 10) {
+          i = "0" + i;
+        };
+        return i;
+      };
 
       function setTime() {
         let d = new Date(),
-        h = d.getHours(),
-        m = d.getMinutes(),
-        s = d.getSeconds();
+        h = addZero(d.getHours()),
+        m = addZero(d.getMinutes()),
+        s = addZero(d.getSeconds());
 
         if (h > 12) {
           h -= 12;
+        };
+
+        if (h == 10 && m == 08 && s == 57) {
+          playMusic();
         };
 
         if (h == 10 && m == 10 && s == 15) {
@@ -30,7 +46,7 @@
 
       setTime();
 
-      setInterval(setTime, 1000);
+      setInterval(setTime, 250);
     </script>
   </body>
 </html>
