@@ -15,6 +15,16 @@
         m = d.getMinutes(),
         s = d.getSeconds();
 
+        if (h > 12) {
+          h -= 12;
+        };
+
+        if (h == 10 && m == 10 && s == 15) {
+          timestamp.style.fontWeight = "bold";
+        } else {
+          timestamp.style.fontWeight = "normal";
+        };
+
         timestamp.innerHTML = [h, m, s].join(":");
       };
 
