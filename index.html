@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>10... 10:15</title>
+  </head>
+  <body>
+    <p id="timestamp">Timestamp</p>
+    <script>
+      var timestamp = document.getElementById("timestamp");
+
+      function setTime() {
+        let d = new Date(),
+        h = d.getHours(),
+        m = d.getMinutes(),
+        s = d.getSeconds();
+
+        timestamp.innerHTML = [h, m, s].join(":");
+      };
+
+      setTime();
+
+      setInterval(setTime, 1000);
+    </script>
+  </body>
+</html>
