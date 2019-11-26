@@ -17,20 +17,18 @@ function addZero(i) { // Taken from https://www.w3schools.com/jsref/jsref_getsec
   return i;
 };
 
-function isPlaying(audelem) {return !audelem.paused}; // Taken from https://stackoverflow.com/questions/9437228/html5-check-if-audio-is-playing
-
 function setTime() {
   var d = new Date(),
 
-  h = addZero(d.getHours()),
-  m = addZero(d.getMinutes()),
-  s = addZero(d.getSeconds());
+  h = d.getHours(),
+  m = d.getMinutes(),
+  s = d.getSeconds();
 
   if (h > 12) {h -= 12};
 
   let t = h * 60 * 60 + m * 60 + s; // Seconds passed in total
 
-  if (t >= x && !isPlaying(song)) {
+  if (t >= x && song.paused) {
     playMusic(t - x);
   };
 
@@ -39,6 +37,10 @@ function setTime() {
   } else {
     timestamp.style.fontWeight = "normal";
   };
+
+  h = addZero(h),
+  m = addZero(m),
+  s = addZero(s);
 
   timestamp.innerHTML = [h, m, s].join(":");
 };
