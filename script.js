@@ -28,6 +28,8 @@ function setTime() {
 
   let t = h * 60 * 60 + m * 60 + s; // Seconds passed in total
 
+  console.log(t);
+
   if (t >= x && song.paused) {
     playMusic(t - x);
   };
