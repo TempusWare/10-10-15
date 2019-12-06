@@ -1,7 +1,14 @@
 var song = new Audio("ivebeendelayed.mp3"),
-timestamp = document.getElementById("timestamp");
+timestamp = document.getElementById("timestamp"),
+volume = document.getElementById("volume-slider");
 
-const x = 10 * 60 * 60 + 8 * 60 + 40, // Seconds at song start
+song.autoplay = false;
+song.load();
+song.volume = 0.2;
+
+var playing = false;
+
+const x = 10 * 60 * 60 + 8 * 60 + 45, // Seconds at song start
 
 y = 10 * 60 * 60 + 10 * 60 + 15; // Seconds at 10:10:15
 
@@ -28,9 +35,10 @@ function setTime() {
 
   let t = h * 60 * 60 + m * 60 + s; // Seconds passed in total
 
-  console.log(t);
+  //console.log(t);
 
-  if (t >= x && song.paused) {
+  if (t >= x && !playing) {
+    playing = true;
     playMusic(t - x);
   };
 
@@ -48,5 +56,9 @@ function setTime() {
 };
 
 setTime();
+
+volume.addEventListener("change", function () {
+  song.volume = volume.value;
+});
 
 setInterval(setTime, 250);
